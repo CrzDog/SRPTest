@@ -1,12 +1,14 @@
 ﻿using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Experimental.Rendering;
+#if UNITY_EDITOR
 using UnityEditor;
 using UnityEditor.ProjectWindowCallback;
+#endif
 
 class SRPTestAsset : RenderPipelineAsset
 {
-
+#if UNITY_EDITOR
     [MenuItem("Assets/Create/Render Pipeline/SRPTest Asset")]
     static void CreateSRPTestPipeline() {
 	    ProjectWindowUtil.StartNameEditingIfProjectWindowExists(
@@ -22,7 +24,7 @@ class SRPTestAsset : RenderPipelineAsset
             AssetDatabase.CreateAsset(inst, path);
         }
     }
-
+#endif
     protected override IRenderPipeline InternalCreatePipeline()
     {
         return new SRPTest();
